@@ -8,9 +8,10 @@
     <title>PaintJS</title>
   </head>
   <body>
-    <canvas id="jsCanvas" class="canvas"></canvas>
+    <canvas id="jsCanvas" class="canvas cursor__paint"></canvas>
     <div class="controls">
       <div class="controls__range">
+        <span id="jsRangeSpan"></span>
         <input
           type="range"
           id="jsRange"
@@ -23,6 +24,7 @@
       <div class="controls__buttons">
         <button id="jsMode">Fill</button>
         <button id="jsSave">Save</button>
+        <button id="jsClear">Clear</button>
       </div>
       <div class="controls__colors" id="jsColors">
         <div

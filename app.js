@@ -4,6 +4,8 @@ const colors = Array.from(document.getElementsByClassName("jsColor"));
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
+const clear = document.getElementById("jsClear");
+const rangeSpan = document.getElementById("jsRangeSpan");
 
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_WIDTH = 500;
@@ -18,6 +20,8 @@ ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
+
+rangeSpan.innerText = `Thickness : ${range.value}`;
 
 let painting = false;
 let filling = false;
@@ -78,16 +82,21 @@ function handleCanvasClick() {
 
 function handleRangeChange(event) {
   ctx.lineWidth = event.target.value;
+  rangeSpan.innerText = `Thickness : ${event.target.value}`;
 }
 
 function handleModeClick() {
   if (filling === true) {
     filling = false;
     mode.innerText = "fill";
+    canvas.classList.remove("cursor__fill");
+    canvas.classList.add("cursor__paint");
   } else {
     filling = true;
     mode.innerText = "paint";
     stopPainting();
+    canvas.classList.add("cursor__fill");
+    canvas.classList.remove("cursor__paint");
   }
 }
 
@@ -101,6 +110,13 @@ function handleSaveClick() {
   link.href = image;
   link.download = "PaintJS";
   link.click();
+}
+
+function handleClearClick() {
+  const temp = ctx.fillStyle;
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  ctx.fillStyle = temp;
 }
 
 if (canvas) {
@@ -128,4 +144,8 @@ if (mode) {
 
 if (save) {
   save.addEventListener("click", handleSaveClick);
+}
+
+if (clear) {
+  clear.addEventListener("click", handleClearClick);
 }

@@ -1,4 +1,5 @@
 @import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 
 body {
   background-color: #f6f9fc;
@@ -9,6 +10,7 @@ body {
   align-items: center;
   padding-top: 50px;
   padding-bottom: 30px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .canvas {
@@ -17,6 +19,14 @@ body {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cursor__paint {
+  cursor: crosshair;
+}
+
+.cursor__fill {
+  cursor: cell;
 }
 
 .controls {
@@ -28,12 +38,20 @@ body {
 
 .controls .controls__range {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls .controls__range span {
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
 .controls .controls__buttons {
   margin-bottom: 30px;
   display: flex;
-  width: 200px;
+  width: 300px;
   justify-content: space-between;
 }
 
